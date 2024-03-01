@@ -2,21 +2,14 @@
 
 Basic & advanced arithmetic operations and their derivative (for backpropagation) + formatting functions.
 
-## Features
-- Arithmetic operations.
-- Activation functions.
-- Derivative functions.
-- Precision formatting.
-- Type stable concatenation. (REALLY fast)
-
 ## Key Functions
 - Basic statistics: `mean`, `std`.
 - Activation functions: `relu`, `leakyrelu`, `sigmoid`...: .
 - Derivation functions: `∂relu`, `∂leakyrelu`, `∂sigmoid`, `∂abs`...: .
 - Stable differentiation: `rel_stable_diff`
-- Formatting: `fp_2_floor`, `fp_2_round`
+- Precision formatting: `fp_2_floor`, `fp_2_round`
+- Type stable concatenation: `vcat_nospread`, `hcat_nospread`, `cat_nospread`, `stack1`  (REALLY fast)
 - Constans for standardization: `ϵ`, `ϵ64`
-- Concatenation: `vcat_nospread`, `hcat_nospread`, `cat_nospread`, `stack1`
 
 ## Usages.
 ```julia
