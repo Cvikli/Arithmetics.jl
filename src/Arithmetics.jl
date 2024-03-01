@@ -14,8 +14,10 @@ const ω64       = 1e-111
 const ⌂       = 1f27
 
 
-mean(arr; dims=nothing) = if isa(dims, Nothing); sum(arr) / length(arr)
-													else;	sum(arr, dims=dims) / prod(size(arr, r) for r in dims); end
+mean(arr; dims=nothing) = _mean(arr, dims)
+_mean(arr, ::Nothing)   = sum(arr) / length(arr)
+_mean(arr, dims)        = sum(arr; dims) / prod(size(arr, r) for r in dims)
+
 std(arr) = sqrt(mean((arr .- mean(arr)) .^ 2))
 std_deviation = std
 
@@ -146,7 +148,7 @@ fp_2_round(x::AbstractFloat) = (
 	elseif 0.1       > x > -0.1      return round(x,digits=4)
 	elseif 10.       > x > -10.      return round(x,digits=2)
 	elseif 1000.     > x > -1000.    return round(x,digits=0)
-	else return x
+	else return round(x,digits=0)
   end)
 fp_2_str(val::ANY) where ANY = return "$val"
 fp_2_str(val::AbstractFloat) = (
