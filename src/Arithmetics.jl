@@ -147,12 +147,14 @@ fp_2_round(x::AbstractFloat) = (
 	elseif 0.001     > x > -0.001    return round(x,digits=6)
 	elseif 0.1       > x > -0.1      return round(x,digits=4)
 	elseif 10.       > x > -10.      return round(x,digits=2)
+	elseif 100.      > x > -100.     return round(x,digits=1)
 	elseif 1000.     > x > -1000.    return round(x,digits=0)
 	else return round(x,digits=0)
   end)
 fp_2_str(val::ANY) where ANY = return "$val"
 fp_2_str(val::AbstractFloat) = (
 	if     val >= 10000f0              || -10000f0             >= val return @sprintf("%.0f",val)
+	elseif val >= 100f0                || -100f0               >= val return @sprintf("%.1f", val)
 	elseif val >= 10f0                 || -10f0                >= val return @sprintf("%.2f", val)
 	elseif val >= 0.01f0               || -0.01f0              >= val return @sprintf("%.4f", val)
 	elseif val >= 0.0001f0             || -0.0001f0            >= val return @sprintf("%.6f", val)
